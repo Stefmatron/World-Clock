@@ -1,40 +1,54 @@
 
 
-function updateFrankfurt() {
-let frankfurtElement = document.querySelector("#FRA");
-let frankfurtDate = frankfurtElement.querySelector(".date");
-let frankfurtTime = frankfurtElement.querySelector(".time");
-let frankfurtData = moment();
+function updateTime() {
+let DenverElement = document.querySelector("#DEN");
+let DenverDate = DenverElement.querySelector(".date");
+let DenverTime = DenverElement.querySelector(".time");
+let DenverData = moment();
 
-frankfurtDate.innerHTML = frankfurtData.format("MMMM Do YYYY");
-frankfurtTime.innerHTML = frankfurtData.format("h:mm:ss [<small>]A[<small>]");
-}
+DenverDate.innerHTML = DenverData.format("MMMM Do YYYY");
+DenverTime.innerHTML = DenverData.format("h:mm:ss [<small>]A[<small>]");
 
-function updateBali() {
-let BaliElement = document.querySelector("#BAL");
-let BaliDate = BaliElement.querySelector(".date");
-let BaliTime = BaliElement.querySelector(".time");
-let BaliData = moment();
+let SeoulElement = document.querySelector("#SEO");
+let SeoulDate = SeoulElement.querySelector(".date");
+let SeoulTime = SeoulElement.querySelector(".time");
+let SeoulData = moment.tz(`Asia/Seoul`);
 
-BaliDate.innerHTML = BaliData.format("MMMM Do YYYY");
-BaliTime.innerHTML = BaliData.format("h:mm:ss [<small>]A[<small>]");
-}
+SeoulDate.innerHTML = SeoulData.format("MMMM Do YYYY");
+SeoulTime.innerHTML = SeoulData.format("h:mm:ss [<small>]A[<small>]");
 
-function updateAnchorage() {
 let AnchorageElement = document.querySelector("#ANC");
 let AnchorageDate = AnchorageElement.querySelector(".date");
 let AnchorageTime = AnchorageElement.querySelector(".time");
-let AnchorageData = moment();
+let AnchorageData = moment.tz(`America/Anchorage`);
 
 AnchorageDate.innerHTML = AnchorageData.format("MMMM Do YYYY");
 AnchorageTime.innerHTML = AnchorageData.format("h:mm:ss [<small>]A[<small>]");
 }
 
-updateFrankfurt();
-setInterval(updateFrankfurt, 1000);
+function displayCity(event) {
+    let cityTimeZone = event.target.value;
+    if (cityTimeZone === "current") {
+        cityTimeZone = moment.tz.guess();
+    }
+    let cityName = cityTimeZone.replace("_", "").split("/")[1];
+    let cityTime = moment().tz(cityTimeZone);
+    let displayCities = document.querySelector("#display");
+    displayCities.innerHTML = `
+    <div class="city">
+      <div>
+       <h2>${cityName}</h2>
+        <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+      </div>
+       <div class="time">${cityTime.format("h:mm:ss")}<small>${cityTime.format(" A")}</small></div>
+     </div>
+     `;
+}
 
-updateBali();
-setInterval(updateBali, 1000);
+updateTime();
+setInterval(updateTime, 1000);
 
-updateAnchorage();
-setInterval(updateAnchorage, 1000);
+
+let citiesSelect = document.querySelector("#cities");
+
+citiesSelect.addEventListener("change", displayCity);

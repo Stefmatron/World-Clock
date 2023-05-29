@@ -12,22 +12,24 @@
 <body>
     <div class="container">
      <h1>World Clock</h1>
-      <select name="Select a city" id="cities">
-        <option value=" ">Select a city</option>
-        <option  value="Sydney">Sydney🇦🇺</option>
-        <option  value="Tokyo">Tokyo🇯🇵</option>
-        <option  value="Paris">Paris 🇫🇷</option>
+      <select id="cities">
+        <option  value=" ">Select a city</option>
+        <option  value="current">My current Location</option>
+        <option  value="Europe/Kiev">Kiev</option>
+        <option  value="Asia/Tel_Aviv">Tel Aviv</option>
+        <option  value="Africa/Juba">Juba</option>
       </select>
-     <div class="city" id="FRA">
+    <div id="display">
+     <div class="city" id="DEN">
       <div>
-       <h2>Frankfurt</h2>
+       <h2>Denver</h2>
         <div class="date">25. Mai, 2023</div>
       </div>
        <div class="time">2:06:10 <small>AM</small></div>
      </div>
-      <div class="city" id="BAL">
+      <div class="city" id="SEO">
        <div>
-        <h2>Bali</h2>
+        <h2>Seoul</h2>
          <div class="date">25. Mai, 2023</div>
        </div>
         <div class="time">2:06:10 <small>AM</small></div>
@@ -39,6 +41,7 @@
         </div>
          <div class="time">2:06:10 <small>AM</small></div>
       </div>
+     </div>
     </div>
   <footer> This project was coded by <strong> Stefanie Ginder </strong> and is <a href="https://github.com/Stefmatron/World-Clock.git" target="_blank"> open sourced on Github</a> </footer>
   <script src="./javascript/index.js"></script>
